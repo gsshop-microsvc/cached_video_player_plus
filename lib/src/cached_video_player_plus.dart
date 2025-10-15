@@ -45,7 +45,6 @@ class CachedVideoPlayerPlus {
     this.package,
     this.closedCaptionFile,
     this.videoPlayerOptions,
-    this.viewType = VideoViewType.textureView,
   })  : dataSourceType = DataSourceType.asset,
         formatHint = null,
         httpHeaders = const <String, String>{},
@@ -91,7 +90,6 @@ class CachedVideoPlayerPlus {
     this.videoPlayerOptions,
     this.httpHeaders = const <String, String>{},
     Map<String, String>? downloadHeaders,
-    this.viewType = VideoViewType.textureView,
     this.invalidateCacheIfOlderThan = const Duration(days: 69),
     this.skipCache = false,
     String? cacheKey,
@@ -117,7 +115,6 @@ class CachedVideoPlayerPlus {
     this.closedCaptionFile,
     this.videoPlayerOptions,
     this.httpHeaders = const <String, String>{},
-    this.viewType = VideoViewType.textureView,
   })  : dataSource = file.absolute.path,
         dataSourceType = DataSourceType.file,
         package = null,
@@ -138,7 +135,6 @@ class CachedVideoPlayerPlus {
     Uri contentUri, {
     this.closedCaptionFile,
     this.videoPlayerOptions,
-    this.viewType = VideoViewType.textureView,
   })  : assert(
           defaultTargetPlatform == TargetPlatform.android,
           'CachedVideoPlayerPlus.contentUri is only supported on Android.',
@@ -193,11 +189,6 @@ class CachedVideoPlayerPlus {
   ///
   /// This is only used if the video player supports closed captions.
   final Future<ClosedCaptionFile>? closedCaptionFile;
-
-  /// The requested display mode for the video.
-  ///
-  /// Platforms that do not support the request view type will ignore this.
-  final VideoViewType viewType;
 
   /// If the requested network video is cached already, checks if the cache is
   /// older than the provided [Duration] and re-fetches data.
@@ -338,7 +329,6 @@ class CachedVideoPlayerPlus {
           package: package,
           closedCaptionFile: closedCaptionFile,
           videoPlayerOptions: videoPlayerOptions,
-          viewType: viewType,
         ),
       DataSourceType.network when !isCacheAvailable =>
         VideoPlayerController.networkUrl(
@@ -347,20 +337,17 @@ class CachedVideoPlayerPlus {
           closedCaptionFile: closedCaptionFile,
           videoPlayerOptions: videoPlayerOptions,
           httpHeaders: httpHeaders,
-          viewType: viewType,
         ),
       DataSourceType.contentUri => VideoPlayerController.contentUri(
           Uri.parse(realDataSource),
           closedCaptionFile: closedCaptionFile,
           videoPlayerOptions: videoPlayerOptions,
-          viewType: viewType,
         ),
       _ => VideoPlayerController.file(
           File(realDataSource),
           closedCaptionFile: closedCaptionFile,
           videoPlayerOptions: videoPlayerOptions,
           httpHeaders: httpHeaders,
-          viewType: viewType,
         ),
     };
 

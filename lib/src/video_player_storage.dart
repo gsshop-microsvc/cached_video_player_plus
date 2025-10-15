@@ -1,4 +1,4 @@
-import 'package:shared_preferences/shared_preferences.dart';
+import 'shared_preferences_async.dart';
 
 import 'cache_key_helpers.dart' show cacheKeyPrefix;
 
