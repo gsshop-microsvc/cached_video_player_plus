@@ -34,7 +34,7 @@ dependencies:
   # TODO(OutdatedGuy): Remove after v6.0.0 migration period
   get_storage: ^2.1.1
   shared_preferences: ^2.2.3
-  video_player: ^2.9.2
+  video_player: ^2.8.6
 
 platforms:
   android:
