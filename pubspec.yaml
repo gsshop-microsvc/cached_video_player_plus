@@ -24,17 +24,17 @@ screenshots:
     path: screenshots/Windows-Advance-Cache-Management.webp
 
 environment:
-  sdk: ^3.0.0
-  flutter: ">=1.17.0"
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.13.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  flutter_cache_manager: ^3.3.0
+  flutter_cache_manager: 3.3.1
   # TODO(OutdatedGuy): Remove after v6.0.0 migration period
-  get_storage: ^2.1.1
-  shared_preferences: ^2.2.3
-  video_player: ^2.8.6
+  get_storage: 2.1.1
+  shared_preferences: 2.3.3
+  video_player: 2.9.2
 
 platforms:
   android:
