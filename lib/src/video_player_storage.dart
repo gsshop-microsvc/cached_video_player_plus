@@ -8,7 +8,7 @@ import 'cache_key_helpers.dart' show cacheKeyPrefix;
 /// migration functionality from get_storage to shared_preferences.
 class VideoPlayerStorage {
   /// SharedPreferences instance for storing cache metadata.
-  final _asyncPrefs = SharedPreferencesAsync();
+  final _asyncPrefs = VideoPlayerPrefs();
 
   /// Singleton instance of VideoPlayerStorage.
   static final _instance = VideoPlayerStorage._internal();

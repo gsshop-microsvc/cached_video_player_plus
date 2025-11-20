@@ -34,5 +34,14 @@ class VideoCacheManager extends CacheManager {
   /// This private constructor initializes the cache manager with the
   /// predefined configuration [key]. It's called only once to create the
   /// singleton instance.
-  VideoCacheManager._() : super(Config(key));
+  VideoCacheManager._()
+      : super(
+          Config(
+            key,
+            stalePeriod: const Duration(days: 10),
+            maxNrOfCacheObjects: 20,
+            repo: JsonCacheInfoRepository(databaseName: key),
+            fileService: HttpFileService(),
+          ),
+        );
 }

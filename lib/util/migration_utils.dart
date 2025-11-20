@@ -53,7 +53,7 @@ import '../src/cache_key_helpers.dart';
 Future<void> migrateCachedVideoDataToSharedPreferences() async {
   try {
     // Check if migration has already been completed
-    final asyncPrefs = SharedPreferencesAsync();
+    final asyncPrefs = VideoPlayerPrefs();
     if (await asyncPrefs.getBool(migrationKey) == true) {
       return;
     }
@@ -98,7 +98,7 @@ Future<void> migrateCachedVideoDataToSharedPreferences() async {
     }
   } catch (e) {
     // If migration fails, mark as completed to prevent retry loops
-    final asyncPrefs = SharedPreferencesAsync();
+    final asyncPrefs = VideoPlayerPrefs();
     await asyncPrefs.setBool(migrationKey, false);
     if (kDebugMode) {
       print(

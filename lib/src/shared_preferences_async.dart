@@ -1,9 +1,18 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// A thin async wrapper around SharedPreferences to provide Future-based getters
-/// consistent with legacy async access patterns used in this package.
-class SharedPreferencesAsync {
-  Future<SharedPreferences> get _prefs => SharedPreferences.getInstance();
+/// A thin async wrapper around SharedPreferences.
+/// Renamed to avoid conflict with the official SharedPreferencesAsync class in newer versions.
+class VideoPlayerPrefs {
+  /// Cache the Future itself to prevent race conditions where multiple
+  /// calls start initialization simultaneously.
+  Future<SharedPreferences>? _prefsFuture;
+
+  Future<SharedPreferences> get _prefs {
+    // If the Future hasn't been created yet, create it immediately.
+    // Subsequent calls will receive the same running Future.
+    _prefsFuture ??= SharedPreferences.getInstance();
+    return _prefsFuture!;
+  }
 
   Future<int?> getInt(String key) async {
     final prefs = await _prefs;
