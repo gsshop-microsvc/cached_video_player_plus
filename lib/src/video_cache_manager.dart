@@ -39,7 +39,7 @@ class VideoCacheManager extends CacheManager {
           Config(
             key,
             stalePeriod: const Duration(days: 10),
-            maxNrOfCacheObjects: 20,
+            maxNrOfCacheObjects: 100,
             repo: JsonCacheInfoRepository(databaseName: key),
             fileService: HttpFileService(),
           ),
